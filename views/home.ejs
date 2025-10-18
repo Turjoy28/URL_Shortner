@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hey from Server</h1>
+    <h1>URL Shortner</h1>
+    <% if(id){ %>
+        <p>URL Generated:http://localhost:8001/url/<%=id%></p>
+    <% } %>
+    <div>
+        <form method="POST" action="/url">
+            <label>Enter Your Original URL</label>
+            <input type="text" name="url" placeholder="http://example.com"/>
+     
+        <button type="submit"> Generate </button>
+        </form>
+    </div>
 </body>
 </html>

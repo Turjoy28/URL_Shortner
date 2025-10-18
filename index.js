@@ -1,5 +1,6 @@
 const express= require('express')
 const path=require('path')
+const staticRoute=require('./routes/staticRouter')
 const URL = require("./models/url");  // ✅ Correct import
 const urlRoute=require('./routes/url')
 const { connect } = require('mongoose');
@@ -12,12 +13,9 @@ app.set('views',path.resolve('./views'))
 
 
 app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
-app.get("/front/test",async(req,res)=>{
-    const allUrls=await URL.find({});
-    return res.render('home')
-})
-
+app.use("/",staticRoute);
 
 app.use("/url",urlRoute);
 
@@ -42,4 +40,4 @@ app.get('/url/:shortId',async(req,res)=>{
 connectMongoDB( "mongodb://localhost:27017/short-url")
 .then(()=> console.log("MongoDB connected"))
 
-app.listen(PORT,()=>console.log(`Server Started at PORT:${PORT}`))
+app.listen(PORT,()=>console.log(`Server Started at http://localhost:${PORT}`))
