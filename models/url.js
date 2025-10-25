@@ -1,5 +1,4 @@
 
-
 const mongoose = require('mongoose')
 
 const urlSchema = new mongoose.Schema({
@@ -19,6 +18,10 @@ const urlSchema = new mongoose.Schema({
             type: Number
         }
     }],
+    createdBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users",
+    }
 }, { timestamps: true }
 );
 
